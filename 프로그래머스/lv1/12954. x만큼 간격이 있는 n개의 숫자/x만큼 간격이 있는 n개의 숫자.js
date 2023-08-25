@@ -1,10 +1,11 @@
 function solution(x, n) {
     let answer = [];
         
-    for (let i = x; Math.abs(i) <= Math.abs(x * n); i += x) {
-        if (answer.length === n) break;
-        answer.push(i);
+    for (let i = 1; i <= n; i++) {
+        answer.push(i * x);
     }
     
     return answer;
 }
+
+    
