@@ -4,16 +4,16 @@ function solution(board) {
     
     for (let i = 0; i < board.length; i++) {
         const row = board[i];
-        const boomIndex = [];
+        const bombIndex = [];
         
         for (let j = 0; j < row.length; j++) {
             const space = row[j];
             
-            if (space === 1) boomIndex.push(j);
-            else boomIndex.push(true);
+            if (space === 1) bombIndex.push(j);
+            else bombIndex.push(true);
         }
 
-        dangerZone.set(i, boomIndex);
+        dangerZone.set(i, bombIndex);
     }
     
     dangerZone.forEach((rowValue, rowNum, zone) => {
@@ -24,7 +24,7 @@ function solution(board) {
                 if (beforeRow) {
                     const newBeforeRow = beforeRow.map((item, idx) => {
                         const needChange = idx === space - 1 || idx === space || idx === space + 1;
-                        if (needChange) return false;
+                        if (needChange && typeof item !== 'number') return false;
                         return item;
                     })
                     zone.set(rowNum - 1, newBeforeRow);
@@ -50,7 +50,7 @@ function solution(board) {
             } 
         }
     })
-    
+
     dangerZone.forEach((rowValue) => {
         const safeZone = rowValue.filter((space) => space === true);
         answer += safeZone.length;
