@@ -1,10 +1,3 @@
-function getLength(line) {
-    const start = line[0];
-    const end = line[1];
-    const length = end - start;
-    return length;
-}
-
 function solution(lines) {
     let answer = 0;
     const [first, second, third] = lines;
@@ -17,15 +10,14 @@ function solution(lines) {
 
     lines.forEach(([start, end]) => {
         for (let i = start; i < end; i++) {
-            const dot = baseLineMap.get(i)
+            const dot = baseLineMap.get(i);
             baseLineMap.set(i, dot + 1);
         }
     })
 
     baseLineMap.forEach((dot) => {
-        if (dot > 1) answer++
+        if (dot > 1) answer++;
     })
-    
     
     return answer;
 }
