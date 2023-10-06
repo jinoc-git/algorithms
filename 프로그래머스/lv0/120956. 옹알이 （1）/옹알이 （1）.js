@@ -5,7 +5,7 @@ function solution(babbling) {
     for (let word of babbling) {
         let copyWord = word;        
         
-        for (let n = 0; n < 4; n++) {
+        for (let n = 0; n < possibleLetterList.size; n++) {
             const checkingWord = possibleLetterList.get(copyWord[0]);
             if (!checkingWord) break;
             
