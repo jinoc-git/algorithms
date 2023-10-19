@@ -12,6 +12,8 @@ const NUMBER = {
 };
 
 function solution(s) {
+    if (!isNaN(s)) return Number(s);
+    
     let answer = '';
     let word = '';
     
