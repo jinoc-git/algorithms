@@ -10,7 +10,7 @@ function solution(sizes) {
             longestWidth = longestWidth > cardWidth ? longestWidth : cardWidth;
             longestHeight = longestHeight > cardHeight ? longestHeight : cardHeight;
         }
-        if (cardWidth <= cardHeight) {
+        else {
             longestWidth = longestWidth > cardHeight ? longestWidth : cardHeight;
             longestHeight = longestHeight > cardWidth ? longestHeight : cardWidth;
         }
