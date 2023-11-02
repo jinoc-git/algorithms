@@ -1,18 +1,32 @@
 function solution(name, yearning, photo) {
-    const answer = [];
-    
-    photo.forEach((nameList) => {
+    const answer = photo.map((nameList) => {
         let sum = 0;
         for (let val of nameList) {
             const idx = name.indexOf(val);
             if (idx !== -1) sum += yearning[idx];
         }
         
-        answer.push(sum);
+        return sum;
     })
     
     return answer;
 }
+
+// function solution(name, yearning, photo) {
+//     const answer = [];
+    
+//     photo.forEach((nameList) => {
+//         let sum = 0;
+//         for (let val of nameList) {
+//             const idx = name.indexOf(val);
+//             if (idx !== -1) sum += yearning[idx];
+//         }
+        
+//         answer.push(sum);
+//     })
+    
+//     return answer;
+// }
 
 // function solution(name, yearning, photo) {
 //     const answer = [];
