@@ -16,10 +16,14 @@ function solution(answers) {
         const idx2 = i % repeat['person2'].length;
         const idx3 = i % repeat['person3'].length;
 
-        if (answers[i] === repeat['person1'][idx1]) count['person1']++;
-        if (answers[i] === repeat['person2'][idx2]) count['person2']++;
-        if (answers[i] === repeat['person3'][idx3]) count['person3']++;
+        const isCorrectPerson1 = answers[i] === repeat['person1'][idx1];
+        if (isCorrectPerson1) count['person1']++;
         
+        const isCorrectPerson2 = answers[i] === repeat['person2'][idx2];
+        if (isCorrectPerson2) count['person2']++;
+        
+        const isCorrectPerson3 = answers[i] === repeat['person3'][idx3];
+        if (isCorrectPerson3) count['person3']++;
     }
     
     const bigestCount = Math.max(...Object.values(count));
