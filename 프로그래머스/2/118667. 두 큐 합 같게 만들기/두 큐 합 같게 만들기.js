@@ -1,5 +1,6 @@
 function solution(queue1, queue2) {
     const queue = queue1.concat(queue2);
+    
     let sumQ1 = queue1.reduce((acc, cur) => acc + cur, 0);
     let sumQ2 = queue2.reduce((acc, cur) => acc + cur, 0);    
     const half = (sumQ1 + sumQ2) / 2;
