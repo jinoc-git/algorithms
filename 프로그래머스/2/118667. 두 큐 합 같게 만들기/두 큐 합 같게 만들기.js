@@ -13,7 +13,8 @@ function solution(queue1, queue2) {
         if (sumQ1 > half) {
             sumQ1 -= queue[q1Pointer % queue.length];
             q1Pointer++;
-        } else {
+        } 
+        else if (sumQ1 < half) {
             sumQ1 += queue[q2Pointer % queue.length];
             q2Pointer++;
         }
