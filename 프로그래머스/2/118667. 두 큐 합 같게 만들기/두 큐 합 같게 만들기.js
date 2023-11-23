@@ -7,14 +7,13 @@ function solution(queue1, queue2) {
     let q1Pointer = 0;
     let q2Pointer = queue1.length;
     
-    for (let i = 0; i < queue.length * 3; i++) {
+    for (let i = 0; i < queue1.length * 3; i++) {
         if (sumQ1 === half) return i;
 
         if (sumQ1 > half) {
             sumQ1 -= queue[q1Pointer % queue.length];
             q1Pointer++;
-        } 
-        else if (sumQ1 < half) {
+        } else {
             sumQ1 += queue[q2Pointer % queue.length];
             q2Pointer++;
         }
