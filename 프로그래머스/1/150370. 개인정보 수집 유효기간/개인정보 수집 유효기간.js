@@ -5,17 +5,17 @@ function solution(today, terms, privacies) {
     
     terms.forEach((item) => {
         const [key, val] = item.split(' ');
-        termsMap.set(key, val);
+        termsMap.set(key, +val);
     })
 
     privacies.forEach((privacy, idx) => {
         const [date, privacyTerms] = privacy.split(' ');
-        const [year, month, day] = date.split('.');
+        const [year, month, delDay] = date.split('.');
         const maxMonth = termsMap.get(privacyTerms);
         
         
         let delYear = +year + Math.floor(maxMonth / 12);
-        let delMonth = +month + (+maxMonth % 12);
+        let delMonth = +month + maxMonth % 12;
 
         if (delMonth > 12) {
             delYear += 1;
@@ -28,7 +28,7 @@ function solution(today, terms, privacies) {
         if (isSameYear && delMonth > +tMonth) return;
 
         const isSameMonth = delMonth === +tMonth;
-        if (isSameYear && isSameMonth && +day > +tDay) return;
+        if (isSameYear && isSameMonth && +delDay > +tDay) return;
         
         answer.push(idx + 1);
     })
