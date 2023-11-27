@@ -1,10 +1,9 @@
 function solution(n) {
     let answer = 0;
-    const numbers = [false, false];
+    const numbers = new Array(n + 1).fill(true);
     
-    for (let i = 2; i <= n; i++) {
-        numbers.push(true);
-    }    
+    numbers[0] = false;    
+    numbers[1] = false;    
     
     for (let i = 2; i < Math.sqrt(n); i++) {
         if (numbers[i]) {
