@@ -16,17 +16,7 @@ function solution(N, stages) {
     
     failureRate.pop();
     
-    const answer = failureRate.sort((a, b) => {
-        const [aStage, aFailure] = a;
-        const [bStage, bfailure] = b;
-        
-        if (bfailure - aFailure < 0) return -1;
-        if (bfailure - aFailure > 0) return 1;
-        if (bfailure === aFailure) {
-            if (aStage - bStage < 0) return -1;
-            if (aStage - bStage > 0) return +1;
-        }
-    }).map(([currentStage, failure]) => currentStage);
+    const answer = failureRate.sort((a, b) => b[1] - a[1]).map(([currentStage, failure]) => currentStage);
     
     return answer;
 }
