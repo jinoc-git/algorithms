@@ -23,9 +23,7 @@ function solution(dartResult) {
             continue;
         }
         
-        if (isScore) {
-            result.push(+str);
-        } 
+        if (isScore) result.push(+str);
         else if (isBonus) {
             const score = result.pop();
             result.push(calcBonus(str, score));
