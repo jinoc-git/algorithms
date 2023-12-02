@@ -46,7 +46,10 @@ function solution(babbling) {
                     break;
                 }
             } 
-            else isPossible = false;
+            else {
+                isPossible = false;
+                break;
+            }
         }
         
         if (isPossible) answer++;
