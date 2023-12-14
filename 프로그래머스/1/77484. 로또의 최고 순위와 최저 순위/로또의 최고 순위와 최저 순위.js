@@ -11,8 +11,6 @@ function solution(lottos, win_nums) {
 
     const bestRank = rank[matchNum + 6 - knownNum.length];
     const worstRank = rank[matchNum];
-          
-    const answer = [bestRank, worstRank];
     
-    return answer;
+    return [bestRank, worstRank];
 }
