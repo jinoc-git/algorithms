@@ -1,24 +1,22 @@
 function solution(board, moves) {
     let answer = 0;
-    let newBoard = board;
     const bucket = [];
 
-    moves.forEach((move, idx) => {
-        for (let i = 0; i < newBoard.length; i++) {
-            const floor = newBoard[i];
-            const area = floor[move - 1];
-            const hasDoll = area !== 0;
+    moves.forEach((move) => {
+        for (let i = 0; i < board.length; i++) {
+            const floor = board[i];
+            const doll = floor[move - 1];
             
-            if (hasDoll) {
+            if (doll !== 0) {
                 const topOfBucket = bucket[bucket.length - 1];
-                if (topOfBucket === area) {
+                if (topOfBucket === doll) {
                     bucket.pop();
                     answer += 2;
                 }
-                else bucket.push(area);
+                else bucket.push(doll);
 
                 floor[move - 1] = 0;
-                newBoard[i] = floor;
+                board[i] = floor;
                 break;
             }
         }
