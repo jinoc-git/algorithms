@@ -15,16 +15,16 @@ function solution(genres, plays) {
     const answer = [...musicList.values()].sort((genre1, genre2) => {
         return genre2['total'] - genre1['total'];
     }).map((genre) => {
-        const sortedGenre = Object.entries(genre).filter(([idx, _]) => {
-            return idx !== 'total';
-        }).sort((music1, music2) => {
-            if (music1[1] === music2[1]) {
-                return music1[0] - music2[0];
+        const sortedGenre = Object.entries(genre).filter(([_musicNum, _]) => {
+            return _musicNum !== 'total';
+        }).sort(([_music1Num, music1Count], [_music2Num, music2Count]) => {
+            if (music1Count === music2Count) {
+                return _music1Num - _music2Num;
             }
-            return music2[1] - music1[1];
+            return music2Count - music1Count;
         })
         
-        const musicList = sortedGenre.slice(0, 2).map(([idx, count]) => +idx);
+        const musicList = sortedGenre.slice(0, 2).map(([_num, count]) => +_num);
         
         return musicList;
     }).flat();
