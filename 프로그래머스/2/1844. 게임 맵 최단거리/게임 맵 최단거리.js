@@ -16,7 +16,10 @@ function solution(maps) {
             
             if (nextX === xMax - 1 && nextY === yMax - 1) return count + 1;
             
-            if (nextX >= 0 && nextX < xMax && nextY >= 0 && nextY < yMax && maps[nextY][nextX] === 1) {
+            const canX = nextX >= 0 && nextX < xMax;
+            const canY = nextY >= 0 && nextY < yMax;
+            
+            if (canX && canY && maps[nextY][nextX] === 1) {
                 maps[nextY][nextX] = 0;
                 visited.push([nextY, nextX, count + 1]);
             }
