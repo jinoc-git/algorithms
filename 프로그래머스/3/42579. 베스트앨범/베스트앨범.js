@@ -12,9 +12,11 @@ function solution(genres, plays) {
         musicList.set(genre, genrePlayCount);
     }
     
-    const answer = [...musicList.values()].sort((genre1, genre2) => {
+    const sortedMusic = [...musicList.values()].sort((genre1, genre2) => {
         return genre2['total'] - genre1['total'];
-    }).map((genre) => {
+    });
+    
+    const answer = sortedMusic.map((genre) => {
         const sortedGenre = Object.entries(genre).filter(([_musicNum]) => {
             return _musicNum !== 'total';
         }).sort(([_music1Num, music1Count], [_music2Num, music2Count]) => {
