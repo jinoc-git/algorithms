@@ -8,14 +8,19 @@ function solution(progresses, speeds) {
         const queueLen = queue.length;
         
         for (let i = 0; i < queueLen; i++) {
-            const progress = queue[0];
-            if (progress + (day * speeds[0]) < 100) break;
+            const worked = queue[0];
+            const progress = worked + (day * speeds[0]);
+            if (progress < 100) break;
 
             speeds.shift();
             queue.shift();
         }
-
-        if (queueLen !== queue.length) answer.push(queueLen - queue.length);
+        
+        const canDeployment = queueLen !== queue.length;
+        if (canDeployment) {
+            const progressCount = queueLen - queue.length;
+            answer.push(progressCount);
+        }
     }
     
     return answer;
