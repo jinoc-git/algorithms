@@ -8,7 +8,7 @@ function solution(clothes) {
     }
     
     const typeCountList = clothesCount.values();
-    
+
     for (let count of typeCountList) answer *= count + 1;
     
     return answer - 1;
