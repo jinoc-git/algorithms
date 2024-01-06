@@ -13,7 +13,6 @@ function solution(maps) {
         for (let i = 0; i < 4; i++) {
             const nextX = x + goX[i];
             const nextY = y + goY[i];
-            
             if (nextX === xMax - 1 && nextY === yMax - 1) return count + 1;
             
             const canX = nextX >= 0 && nextX < xMax;
