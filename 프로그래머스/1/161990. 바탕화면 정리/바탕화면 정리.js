@@ -2,8 +2,8 @@ function solution(wallpaper) {
     const answer = [51, 51, 0, 0];
     
     wallpaper.forEach((row, rowIdx) => {
-        const minLuy = row.split('').indexOf('#');
-        const maxLuy = row.split('').lastIndexOf('#') + 1;
+        const minLuy = row.indexOf('#');
+        const maxLuy = row.lastIndexOf('#') + 1;
         
         if (minLuy !== -1) {
             const originLux = answer[0];
