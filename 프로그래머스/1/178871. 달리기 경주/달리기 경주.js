@@ -3,8 +3,7 @@ function solution(players, callings) {
     const playerIdxList = {};
     
     for (let i = 0; i < answer.length; i++) {
-        const player = answer[i];
-        playerIdxList[player] = i;
+        playerIdxList[answer[i]] = i;
     }
     
     for (let i = 0; i < callings.length; i++) {
