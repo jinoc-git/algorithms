@@ -5,12 +5,11 @@ function solution(s) {
     for (let i = 0; i < s.length; i++) {
         const str = s[i];
         const forward = stringList.get(str);
+        
         if (forward !== undefined) {
-            const gap = i - forward;
-            answer.push(gap);
+            answer.push(i - forward);
             stringList.set(str, i);
-        }
-        else {
+        } else {
             answer.push(-1);
             stringList.set(str, i);
         }
