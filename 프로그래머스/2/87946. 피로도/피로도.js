@@ -5,6 +5,7 @@ function solution(k, dungeons) {
     const adventure = (curK, count) => {        
         for (let i = 0; i < dungeons.length; i++) {
             const curDungeon = dungeons[i];
+            
             if (curK >= curDungeon[0] && !visited[i]) {
                 visited[i] = true;
                 adventure(curK - curDungeon[1], count + 1);
