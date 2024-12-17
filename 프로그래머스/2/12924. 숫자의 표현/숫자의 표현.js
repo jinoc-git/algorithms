@@ -1,15 +1,11 @@
 function solution(n) {
-    let answer = 1; 
-    const half = n / 2;
+    let answer = 0; 
     
-    for (let i = 1; i <= half; i++) {
-        let sum = 0;
+    for (let i = 1; i <= n; i++) {
+        const isAliquot = n % i === 0; // 약수
+        const isOdd = i % 2 === 1; // 홀수
         
-        for (let j = i; sum < n; j++) {
-            sum += j;
-        }
-        
-        if (sum === n) answer++
+        if (isAliquot && isOdd) answer++;
     }
 
     return answer;
