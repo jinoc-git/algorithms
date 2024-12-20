@@ -6,6 +6,7 @@ function solution(citations) {
     
     for (let i = 1; i <= sortedCitations.length; i++) {
         const citationCount = sortedCitations[i - 1];
+        
         if (citationCount <= i) answer = Math.max(answer, citationCount);
         else answer = Math.max(answer, i);
     }
