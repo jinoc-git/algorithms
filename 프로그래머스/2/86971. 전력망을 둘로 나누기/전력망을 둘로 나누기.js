@@ -9,7 +9,7 @@ function solution(n, wires) {
         nodes[v1].push(v2);
         nodes[v2].push(v1);
     });
-    
+
     const connection = (start, excluded) => {
         let count = 0;
         const way = [start];
