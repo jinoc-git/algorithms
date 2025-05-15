@@ -8,7 +8,7 @@ function solution(schedules, timelogs, startday) {
         const safeTime = getSafeTime(targetTime);
 
         for (let j = 0; j < arrivalTimes.length; j++) {
-            const isWeekend = (startday + j) % 7 === 0 || (startday + j) % 7 === 6;
+            const isWeekend = [0, 6].includes((startday + j) % 7);
             if (isWeekend) continue;
             
             const isLate = safeTime < arrivalTimes[j];
