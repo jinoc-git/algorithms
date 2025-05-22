@@ -1,6 +1,7 @@
 function solution(s){
-    let answer = false;
+    if (s[0] === ')') return false;
     
+    let answer = false;
     const stack = [];
 
     for (let i = 0; i < s.length; i++) {
