@@ -91,7 +91,7 @@ class MinHeap {
         let nextIndex = null;
         
         while (this.hasLeftChild(currentIndex)) {
-            const isRightChildSmallerThanLeftChild = this.rightChild(currentIndex) < this.leftChild(currentIndex);
+            const isRightChildSmallerThanLeftChild = this.rightChild(currentIndex) <= this.leftChild(currentIndex);
             if (this.hasRightChild(currentIndex) && isRightChildSmallerThanLeftChild) {
                 nextIndex = this.getRightChildIndex(currentIndex);
             } else {
