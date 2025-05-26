@@ -7,8 +7,8 @@ function solution(priorities, location) {
     
     while (queue.length > 0) {
         const curProcess = queue.shift();
-        const isLowerPrioritiy = queue.some((process) => process.priority > curProcess.priority);
-        if (isLowerPrioritiy) {
+        const hasHigherPriorityProcess = queue.some((process) => process.priority > curProcess.priority);
+        if (hasHigherPriorityProcess) {
             queue.push(curProcess);
         } else {
             runCount++;
