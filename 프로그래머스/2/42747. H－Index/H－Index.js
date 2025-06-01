@@ -4,11 +4,14 @@ function solution(citations) {
     
     if (sortedCitations[0] === 0) return answer;
     
-    for (let i = 1; i <= sortedCitations.length; i++) {
-        const citationCount = sortedCitations[i - 1];
+    for (let i = 0; i < sortedCitations.length; i++) {
+        const citationCount = sortedCitations[i];
+        if (citationCount < i + 1) {
+            answer = i;
+            break;
+        }
         
-        if (citationCount <= i) answer = Math.max(answer, citationCount);
-        else answer = Math.max(answer, i);
+        answer = i + 1;
     }
     
     return answer;
