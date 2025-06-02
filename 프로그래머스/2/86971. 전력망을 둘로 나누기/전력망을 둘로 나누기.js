@@ -1,40 +1,43 @@
 function solution(n, wires) {
-    let answer = 100;
-    const nodes = {};
+    let answer = 98;
+    const treeMap = new Map();
+    
+    for (let i = 1; i <= n; i++) treeMap.set(i, []);
     
     wires.forEach(([v1, v2]) => {
-        if (!nodes[v1]) nodes[v1] = [];
-        if (!nodes[v2]) nodes[v2] = [];
-        
-        nodes[v1].push(v2);
-        nodes[v2].push(v1);
+        treeMap.get(v1).push(v2);
+        treeMap.get(v2).push(v1);
     });
-
-    const connection = (start, excluded) => {
+    
+    const excludeWire = (startPoint, excludeWire) => {
         let count = 0;
-        const way = [start];
-        const visited = [];
+        const visited = new Array(n + 1).fill(false);
+        visited[startPoint] = true;
+        const ways = [startPoint];
         
-        while (way.length) {
-            const current = way.shift();
-            if (visited[current]) continue;
-
-            visited[current] = true;
+        while (ways.length) {
+            const currentPoint = ways.shift();
             count++;
 
-            nodes[current].forEach((point) => {
-                if (!visited[point] && point !== excluded) way.push(point);
-            })
+            treeMap.get(currentPoint).forEach((point) => {
+                const isExcludeWire = (currentPoint === excludeWire[0] && point === excludeWire[1]) || (currentPoint === excludeWire[1] && point === excludeWire[0]);
+                if (isExcludeWire) return;
+                if (visited[point] !== true) {
+                    visited[point] = true;
+                    ways.push(point);
+                }
+            });
         }
         
         return count;
     }
     
     wires.forEach(([v1, v2]) => {
-        const gap = Math.abs(connection(v1, v2) - connection(v2, v1));
+        const firstCount = excludeWire(v1, [v1, v2]);
+        const secondCount = n - firstCount;
+        const gap = Math.abs(firstCount - secondCount);
         answer = Math.min(answer, gap);
     });
-    
     
     return answer;
 }
