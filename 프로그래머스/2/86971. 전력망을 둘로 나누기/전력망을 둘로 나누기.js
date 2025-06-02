@@ -17,6 +17,8 @@ function solution(n, wires) {
         
         while (way.length) {
             const current = way.shift();
+            if (visited[current]) continue;
+
             visited[current] = true;
             count++;
 
