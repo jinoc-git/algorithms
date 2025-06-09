@@ -23,7 +23,7 @@ function solution(n, costs) {
     
     let connectedBridge = 0;
     
-    for (let [islandA, islandB, cost] of costs) {
+    for (let [islandA, islandB, cost] of ascendingCosts) {
         if (joinGroup(islandA, islandB)) {
             answer += cost;
             connectedBridge++;
