@@ -1,8 +1,7 @@
 function solution(m, n, puddles) {
     const MOD = 1_000_000_007;
     const ways = Array.from({ length: n + 1 }, () => Array(m + 1).fill(0));
-    puddles.forEach(([x, y]) => ways[y][x] = -1);
-    
+    for (let [x, y] of puddles) ways[y][x] = -1;
     ways[1][1] = 1;
 
     for (let y = 1; y <= n; y++) {
