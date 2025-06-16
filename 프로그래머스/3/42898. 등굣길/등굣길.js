@@ -1,32 +1,22 @@
 function solution(m, n, puddles) {
-    let answer = 0;
-    
-    const raw = 1_000_000_007;
-    // const ways = new Array(n + 1).fill(new Array(m + 1).fill(0));
+    const MOD = 1_000_000_007;
     const ways = Array.from({ length: n + 1 }, () => Array(m + 1).fill(0));
-    const traps = new Set();
-    puddles.forEach(([x, y]) => traps.add(`${y},${x}`));
+    puddles.forEach(([x, y]) => ways[y][x] = -1);
     
     ways[1][1] = 1;
 
     for (let y = 1; y <= n; y++) {
         for (let x = 1; x <= m; x++) {
-            const isTrap = traps.has(`${y},${x}`);
-            if (isTrap) {
-                ways[y][x] = 0;
-                continue;
-            }
-            
+            const isTrap = ways[y][x] === -1;
+            if (isTrap) continue;      
             const isHome = x === 1 && y === 1;
             if (isHome) continue;
             
-            const topToDownWayCount = ways[y - 1][x];
-            const leftToRightWayCount = ways[y][x - 1];
-            ways[y][x] = (topToDownWayCount + leftToRightWayCount) % raw;
+            const topToDownWayCount = ways[y - 1][x] !== -1 ? ways[y - 1][x] : 0;
+            const leftToRightWayCount = ways[y][x - 1] !== -1 ? ways[y][x - 1] : 0;
+            ways[y][x] = (topToDownWayCount + leftToRightWayCount) % MOD;
         }
     }
-
-    answer = ways.at(-1).at(-1);
     
-    return answer;
+    return ways.at(-1).at(-1);
 }
