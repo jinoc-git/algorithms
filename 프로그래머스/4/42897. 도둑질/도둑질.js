@@ -11,7 +11,7 @@ function solution(money) {
             maxMoney[i] = Math.max(maxMoney[i - 1], cur + maxMoney[i - 2]);
         }
         
-        return maxMoney[houseList.length - 1];
+        return maxMoney.at(-1);
     }
     
     let answer = 0;
