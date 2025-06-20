@@ -32,7 +32,5 @@ function solution(tickets) {
     
     fly('ICN', 0);
     
-    console.log(ways)
-    
     return answer;
 }
