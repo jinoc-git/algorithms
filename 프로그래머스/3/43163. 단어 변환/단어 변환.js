@@ -1,6 +1,9 @@
 function solution(begin, target, words) {
-    const changedWord = [];
+    if (!words.includes(target)) return 0;
+    
     const queue = [[begin, 0]];
+    const changedWord = new Set();
+    changedWord.add(begin);
     
     const check = (before, after) => {
         let count = 0;
@@ -16,19 +19,17 @@ function solution(begin, target, words) {
     }
     
     while (queue.length) {
-        const [before, answer] = queue.shift();
+        const [before, count] = queue.shift();
         
-        if (before === target) return answer;
+        if (before === target) return count;
         
-        words.forEach((after) => {
-            if (changedWord.includes(after)) return;
-            
-            const canChange = check(before, after);
+        words.forEach((after) => {            
+            const canChange = check(before, after) && !changedWord.has(after);
             if (canChange) {
-                queue.push([after, answer + 1]);
-                changedWord.push(after);
+                queue.push([after, count + 1]);
+                changedWord.add(after);
             }
-        })
+        });
     }
     
     return 0;
