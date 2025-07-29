@@ -18,8 +18,7 @@ const calc = (a, b, operatorIndex) => {
     case 2: // 곱셈
       return a * b;
     case 3: // 나눗셈
-      // a가 음수면 양수로 전환 후 소숫점 버리고 음수로 전환
-      return ~~(a / b)
+      return ~~(a / b);
   }
 };
 
