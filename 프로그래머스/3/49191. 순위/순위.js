@@ -6,7 +6,7 @@ function solution(n, results) {
     for (let mid = 1; mid <= n; mid++) {
         for (let winner = 1; winner <= n; winner++) {
             for (let loser = 1; loser <= n; loser++) {
-                const inferResult =graph[winner][mid] && graph[mid][loser];
+                const inferResult = graph[winner][mid] && graph[mid][loser];
                 if (inferResult) graph[winner][loser] = true;
             }
         }
