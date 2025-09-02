@@ -5,7 +5,6 @@ function solution(tickets) {
     const ways = [];
 
     tickets.sort();
-
     
     const fly = (city, count) => {
         ways.push(city);
