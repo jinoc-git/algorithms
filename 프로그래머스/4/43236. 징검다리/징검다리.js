@@ -18,6 +18,7 @@ function solution(distance, rocks, n) {
             if (gap < mid) removeRockCount++;
             else position = curRock;
         }
+        
         if (removeRockCount <= n) {
             answer = mid;
             low = mid + 1;
