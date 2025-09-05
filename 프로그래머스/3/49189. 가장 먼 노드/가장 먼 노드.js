@@ -17,7 +17,7 @@ function solution(n, edge) {
     while (front < queue.length) {
         const [curNode, curDistance] = queue[front];
         front++;
-        
+
         if (curNode > maxDistance) maxDistance = curDistance;
         
         for (const neighbor of graph[curNode]) {
