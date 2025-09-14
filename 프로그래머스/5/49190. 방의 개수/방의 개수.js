@@ -7,7 +7,8 @@ function solution(arrows) {
     const visitedNodes = new Set();
     const visitedEdges = new Set();
     
-    let x = 0, y = 0;
+    let x = 0;
+    let y = 0;
     let rooms = 0;
     
     // 시작점 추가
