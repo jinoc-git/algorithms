@@ -7,6 +7,7 @@ function solution(n, costs) {
         if (islandGroup[islandId] === islandId) return islandId;
         
         islandGroup[islandId] = getParentIsland(islandGroup[islandId]);
+        
         return islandGroup[islandId];
     }
     
@@ -18,6 +19,7 @@ function solution(n, costs) {
             islandGroup[parentB] = parentA;
             return true;
         }
+        
         return false;
     }
     
