@@ -7,8 +7,9 @@ const input = fs
 
 /**
  *
- * @param {number} N 종이의 한 변의 크기
- * @param {number[][]} paper 종이의 구성
+ * @param {number} N
+ * @param {number[][]} paper
+ * @returns
  */
 const solution = (N, paper) => {
   let minusOneCount = 0;
@@ -17,10 +18,11 @@ const solution = (N, paper) => {
 
   /**
    * 종이가 어떤 원소로 이루어져 있는지 분류하는 함수
-   * @param {number[][]} paper 분류할 종이
+   * @param {number} row 확인할 종이의 시작 row index
+   * @param {number} col 확인할 종이의 시작 col index
    */
-  const classificationPaper = (paper) => {
-    const value = paper[0][0];
+  const classificationPaper = (row, col) => {
+    const value = paper[row][col];
     switch (value) {
       case -1:
         minusOneCount++;
@@ -33,17 +35,18 @@ const solution = (N, paper) => {
         break;
     }
   };
-
   /**
    * 모든 종이의 원소가 같은 수로 이루어져 있는지 확인하는 함수
-   * @param {number[][]} paper 확인할 종이
-   * @returns {boolean}
+   * @param {number} row 확인할 종이의 시작 row index
+   * @param {number} col 확인할 종이의 시작 col index
+   * @param {number} size 확인할 종이의 크기
+   * @returns
    */
-  const checkSameNumbers = (paper) => {
-    let first = paper[0][0];
-    for (const row of paper) {
-      for (const num of row) {
-        if (first !== num) return false;
+  const checkSameNumbers = (row, col, size) => {
+    let first = paper[row][col];
+    for (let r = row; r < row + size; r++) {
+      for (let c = col; c < col + size; c++) {
+        if (first !== paper[r][c]) return false;
       }
     }
 
@@ -52,27 +55,27 @@ const solution = (N, paper) => {
 
   /**
    * 종이를 확인하며 자르는 함수
-   * @param {number[][]} paper
+   * @param {number} row 종이의 시작 row index
+   * @param {number} col 종이의 시작 col index
+   * @param {number} size 종이의 크기
+   * @returns
    */
-  const checkPaper = (paper) => {
-    const isSameNumbers = checkSameNumbers(paper);
+  const checkPaper = (row, col, size) => {
+    const isSameNumbers = checkSameNumbers(row, col, size);
     if (isSameNumbers) {
-      classificationPaper(paper);
+      classificationPaper(row, col);
       return;
     }
 
-    for (let r = 0; r < paper.length; r += paper.length / 3) {
-      for (let c = 0; c < paper.length; c += paper.length / 3) {
-        const slicedPaper = paper
-          .slice(r, r + paper.length / 3)
-          .map((v) => v.slice(c, c + paper.length / 3));
-
-        checkPaper(slicedPaper);
+    const nextSize = size / 3;
+    for (let r = 0; r < 3; r++) {
+      for (let c = 0; c < 3; c++) {
+        checkPaper(row + r * nextSize, col + c * nextSize, nextSize);
       }
     }
   };
 
-  checkPaper(paper);
+  checkPaper(0, 0, N);
 
   let answer = '';
   answer += minusOneCount.toString() + '\n';
