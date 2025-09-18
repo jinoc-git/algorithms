@@ -19,7 +19,7 @@ const solution = (N, paper) => {
    * 종이가 어떤 원소로 이루어져 있는지 분류하는 함수
    * @param {number[][]} paper 분류할 종이
    */
-  const classficationPaper = (paper) => {
+  const classificationPaper = (paper) => {
     const value = paper[0][0];
     switch (value) {
       case -1:
@@ -57,7 +57,7 @@ const solution = (N, paper) => {
   const checkPaper = (paper) => {
     const isSameNumbers = checkSameNumbers(paper);
     if (isSameNumbers) {
-      classficationPaper(paper);
+      classificationPaper(paper);
       return;
     }
 
