@@ -3,6 +3,7 @@ function solution(triangle) {
     
     for (let i = 1; i < triangle.length; i++) {
         const row = triangle[i];
+
         for (let j = 0; j < row.length; j++) {
             if (j === 0) {
                 const soloParent = triangle.at(i - 1).at(j);
