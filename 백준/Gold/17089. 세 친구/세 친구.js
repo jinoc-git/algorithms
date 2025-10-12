@@ -25,8 +25,8 @@ const solution = (N, M, relationships) => {
       const aRelation = relationshipArr[i];
       if (!aRelation.has(j + 1)) continue;
 
+      const bRelation = relationshipArr[j];
       for (let k = j + 1; k < N; k++) {
-        const bRelation = relationshipArr[j];
         const cRelation = relationshipArr[k];
         if (aRelation.has(k + 1) && bRelation.has(k + 1)) {
           let aCount = aRelation.size;
