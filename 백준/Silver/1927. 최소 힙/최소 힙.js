@@ -5,10 +5,10 @@
  */
 const solution = (N, numbers) => {
   const answer = []; // 정답 숫자들을 저장할 배열
-  const minHeap = new MinHeap(); // 최대힙 생성
+  const minHeap = new MinHeap(); // 최소힙 생성
 
   for (let num of numbers) {
-    // 0이면 최대값 추출하여 배열에 저장
+    // 0이면 최소값 추출하여 배열에 저장
     if (num === 0) answer.push(minHeap.poll());
     else minHeap.add(num); // 아니면 힙에 추가
   }
