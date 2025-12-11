@@ -5,10 +5,7 @@
  */
 const solution = (N, lines) => {
   // 시작점 (x좌표) 기준으로 오름차순 정렬, 시작점이 같으면 끝점(y) 기준으로 오름차순 정렬
-  lines.sort((a, b) => {
-    if (a[0] !== b[0]) return a[0] - b[0];
-    else return a[1] - b[1];
-  });
+  lines.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
 
   let [curStart, curEnd] = lines[0]; // 첫 번째 선분을 현재 선분으로 시작
   let sumLength = 0; // 길이 합
