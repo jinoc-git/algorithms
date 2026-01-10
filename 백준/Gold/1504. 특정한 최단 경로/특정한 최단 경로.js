@@ -1,3 +1,76 @@
+class MinHeap {
+  constructor() {
+    this.heap = [];
+  }
+
+  push(value) {
+    this.heap.push(value);
+    this.bubbleUp();
+  }
+
+  pop() {
+    if (this.size() === 1) return this.heap.pop();
+    if (this.size() === 0) return null;
+
+    const min = this.heap[0];
+    this.heap[0] = this.heap.pop();
+    this.bubbleDown();
+    return min;
+  }
+
+  bubbleUp() {
+    let index = this.heap.length - 1;
+    while (index > 0) {
+      let parentIndex = Math.floor((index - 1) / 2);
+      // [노드번호, 거리] 구조에서 거리(index 1)를 기준으로 비교
+      if (this.heap[parentIndex][1] <= this.heap[index][1]) break;
+
+      [this.heap[parentIndex], this.heap[index]] = [
+        this.heap[index],
+        this.heap[parentIndex],
+      ];
+      index = parentIndex;
+    }
+  }
+
+  bubbleDown() {
+    let index = 0;
+    const length = this.heap.length;
+
+    while (true) {
+      let leftChildIndex = 2 * index + 1;
+      let rightChildIndex = 2 * index + 2;
+      let swap = null;
+
+      if (leftChildIndex < length) {
+        if (this.heap[leftChildIndex][1] < this.heap[index][1]) {
+          swap = leftChildIndex;
+        }
+      }
+
+      if (rightChildIndex < length) {
+        if (
+          (swap === null &&
+            this.heap[rightChildIndex][1] < this.heap[index][1]) ||
+          (swap !== null &&
+            this.heap[rightChildIndex][1] < this.heap[leftChildIndex][1])
+        ) {
+          swap = rightChildIndex;
+        }
+      }
+
+      if (swap === null) break;
+
+      [this.heap[index], this.heap[swap]] = [this.heap[swap], this.heap[index]];
+      index = swap;
+    }
+  }
+
+  size() {
+    return this.heap.length;
+  }
+}
+
 /**
  * 1번 정점, 반드시 거쳐야하는 정점들과 다른 정점들까지의 최단 거리들을 각각 구하여 최단거리 찾기
  * @param {number} N 정점의 개수
@@ -23,11 +96,14 @@ const solution = (N, E, lines, [v1, v2]) => {
     const dp = new Array(N + 1).fill(Infinity); // start 정점부터 i번째 정점까지 최소 거리를 저장할 배열
     dp[start] = 0; // 시작점 초기화
 
-    const queue = [[start, 0]]; // 큐, [현재 노드, 거리]
-
-    while (queue.length) {
-      queue.sort((a, b) => a[1] - b[1]); // 거리가 가장 짧은 노드를 선택하기 위함
-      const [curNode, curDistance] = queue.shift(); // 추출
+    // queue와 sort 부분은 우선순위 큐 (MinHeap을 사용하면 최적화를 할 수 있다)
+    // const queue = [[start, 0]]; // 큐, [현재 노드, 거리]
+    const heap = new MinHeap();
+    heap.push([start, 0]);
+    while (heap.size() > 0) {
+      // queue.sort((a, b) => a[1] - b[1]); // 거리가 가장 짧은 노드를 선택하기 위함
+      // const [curNode, curDistance] = queue.shift(); // 추출
+      const [curNode, curDistance] = heap.pop(); // 추출
       if (dp[curNode] < curDistance) continue; // 이미 저장한 거리가 더 짧으면 contine;
 
       // 현재 노드와 연결된 노드 방문
@@ -36,7 +112,8 @@ const solution = (N, E, lines, [v1, v2]) => {
         // 길이 합이 이전에 저장된 값보다 작으면
         if (dp[next] > sumDistance) {
           dp[next] = sumDistance; // 값 갱신
-          queue.push([next, sumDistance]); // 큐에 추가
+          // queue.push([next, sumDistance]); // 큐에 추가
+          heap.push([next, sumDistance]); // 힙에 추가
         }
       }
     }
