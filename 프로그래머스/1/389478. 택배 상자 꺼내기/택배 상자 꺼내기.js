@@ -2,8 +2,8 @@ function solution(n, w, num) {
     const map = [];
     let answer = 0;
     let count = 1;
-    let x; 
-    let y;
+    let x = 0; 
+    let y = 0;
 
     for (let i = 0; i < Math.ceil(n / w); ++i) {
         const row = [];
