@@ -5,7 +5,6 @@ function solution(cards1, cards2, goal) {
         const keyword = goal[i];
         const card1 = cards1[0];
         const card2 = cards2[0];
-        
         if (keyword === card1) cards1.shift();
         if (keyword === card2) cards2.shift();
         
